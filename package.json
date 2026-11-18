@@ -1,0 +1,218 @@
+{
+  "name": "migration-atlas",
+  "displayName": "Migration Atlas",
+  "description": "SQL migration files: summary, destructive operations, tables. Pro: PostgreSQL lock-risk review and a rollback plan. Works offline.",
+  "version": "0.1.0",
+  "publisher": "SmallStepsStudio",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "icon": "media/icon.png",
+  "pricing": "Trial",
+  "homepage": "https://github.com/small-steps-studio/migration-atlas#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/small-steps-studio/migration-atlas"
+  },
+  "bugs": {
+    "url": "https://github.com/small-steps-studio/migration-atlas/issues"
+  },
+  "galleryBanner": {
+    "color": "#22304a",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Other",
+    "Linters"
+  ],
+  "keywords": [
+    "sql migration",
+    "database migration",
+    "migration review",
+    "postgresql",
+    "postgres",
+    "schema change",
+    "lock",
+    "zero downtime",
+    "alter table",
+    "create index concurrently",
+    "not valid",
+    "rollback",
+    "down migration",
+    "destructive",
+    "drop table",
+    "flyway",
+    "liquibase",
+    "sql review",
+    "ddl",
+    "devops",
+    "dba",
+    "offline"
+  ],
+  "main": "./src/extension.js",
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
+  },
+  "activationEvents": [],
+  "scripts": {
+    "test": "node scripts/run-tests.js",
+    "gate": "node scripts/release-gate.js",
+    "vscode:prepublish": "node scripts/release-gate.js --skip-tests",
+    "package": "npx --yes @vscode/vsce package --no-dependencies",
+    "package:local": "node scripts/package-local.js",
+    "check-vsix": "node scripts/check-vsix.js"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "migrationAtlas.showSummary",
+        "title": "Migration Atlas: Show Summary",
+        "icon": "$(database)"
+      },
+      {
+        "command": "migrationAtlas.showDestructive",
+        "title": "Migration Atlas: Show Destructive Operations"
+      },
+      {
+        "command": "migrationAtlas.showTables",
+        "title": "Migration Atlas: Show Tables"
+      },
+      {
+        "command": "migrationAtlas.showLockRisk",
+        "title": "Migration Atlas: Show PostgreSQL Lock Risks (Pro)"
+      },
+      {
+        "command": "migrationAtlas.showRollback",
+        "title": "Migration Atlas: Show Rollback Plan (Pro)"
+      },
+      {
+        "command": "migrationAtlas.openSample",
+        "title": "Migration Atlas: Open Sample File"
+      },
+      {
+        "command": "migrationAtlas.openWalkthrough",
+        "title": "Migration Atlas: Open Walkthrough"
+      },
+      {
+        "command": "migrationAtlas.showDocumentation",
+        "title": "Migration Atlas: Show Documentation"
+      },
+      {
+        "command": "migrationAtlas.reportProblem",
+        "title": "Migration Atlas: Report A Problem"
+      },
+      {
+        "command": "migrationAtlas.buyPro",
+        "title": "Migration Atlas: Buy Pro"
+      },
+      {
+        "command": "migrationAtlas.enterKey",
+        "title": "Migration Atlas: Enter Licence Key"
+      },
+      {
+        "command": "migrationAtlas.licenceStatus",
+        "title": "Migration Atlas: Show Licence Status"
+      },
+      {
+        "command": "migrationAtlas.removeLicence",
+        "title": "Migration Atlas: Remove Licence From This Machine"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "migrationAtlas.showSummary",
+          "when": "resourceExtname == .sql",
+          "group": "navigation@90"
+        }
+      ]
+    },
+    "walkthroughs": [
+      {
+        "id": "gettingStarted",
+        "title": "Get started with Migration Atlas",
+        "description": "Open a sample migration, see its summary, destructive operations and tables, and try the Pro lock-risk review and rollback plan in the free 14-day trial.",
+        "steps": [
+          {
+            "id": "migrationAtlas.step.openSample",
+            "title": "Open a sample file",
+            "description": "Migration Atlas reads SQL migration files, the scripts that change a database schema. The sample is an invented release migration of a shop database with typical lock risks and one destructive change, so every report has something to show. Open it to follow along, or open a migration of your own.\n[Open Sample File](command:migrationAtlas.openSample)",
+            "media": {
+              "markdown": "media/walkthrough/open-sample.md"
+            },
+            "completionEvents": [
+              "onCommand:migrationAtlas.openSample"
+            ]
+          },
+          {
+            "id": "migrationAtlas.step.free",
+            "title": "Run Show Summary",
+            "description": "The migration at a glance: how many statements of each kind, how many tables, and whether it runs in a transaction. The report opens as a new Markdown document; your file is not changed.\n[Show Summary](command:migrationAtlas.showSummary)",
+            "media": {
+              "markdown": "media/walkthrough/free.md"
+            },
+            "completionEvents": [
+              "onCommand:migrationAtlas.showSummary"
+            ]
+          },
+          {
+            "id": "migrationAtlas.step.more",
+            "title": "Use the other free reports",
+            "description": "Every free report works without a key, an account or a network connection: Show Destructive Operations, Show Tables.\n[Show Destructive Operations](command:migrationAtlas.showDestructive)\n[Show Tables](command:migrationAtlas.showTables)",
+            "media": {
+              "markdown": "media/walkthrough/more.md"
+            },
+            "completionEvents": [
+              "onCommand:migrationAtlas.showDestructive",
+              "onCommand:migrationAtlas.showTables"
+            ]
+          },
+          {
+            "id": "migrationAtlas.step.pro",
+            "title": "Try Pro free for 14 days",
+            "description": "The first Pro command you run starts a free 14-day trial on this computer, with no key and no network: Show PostgreSQL Lock Risks, Show Rollback Plan.\n[Show PostgreSQL Lock Risks](command:migrationAtlas.showLockRisk)",
+            "media": {
+              "markdown": "media/walkthrough/pro.md"
+            },
+            "completionEvents": [
+              "onCommand:migrationAtlas.showLockRisk",
+              "onCommand:migrationAtlas.showRollback"
+            ]
+          },
+          {
+            "id": "migrationAtlas.step.licence",
+            "title": "Licence and help",
+            "description": "Buy Pro (Personal USD 19, Business USD 39 per user), enter a key, see the licence status, or report a problem.\n[Show Licence Status](command:migrationAtlas.licenceStatus)\n[Report A Problem](command:migrationAtlas.reportProblem)",
+            "media": {
+              "markdown": "media/walkthrough/licence.md"
+            },
+            "completionEvents": [
+              "onCommand:migrationAtlas.licenceStatus"
+            ]
+          }
+        ]
+      }
+    ],
+    "configuration": {
+      "title": "Migration Atlas",
+      "properties": {
+        "migrationAtlas.maxFileSizeMB": {
+          "type": "number",
+          "default": 50,
+          "minimum": 0.1,
+          "maximum": 50,
+          "markdownDescription": "Largest file (in MB) a report reads, up to 50 MB (VS Code passes files only up to 50 MB to extensions). Larger files are refused with a message."
+        },
+        "migrationAtlas.openReportsAsPreview": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Open each report in the Markdown preview as well as in a new editor."
+        }
+      }
+    }
+  }
+}
