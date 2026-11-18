@@ -1,0 +1,4 @@
+CREATE TABLE fresh (id int);
+CREATE INDEX idx_fresh ON fresh (id);
+ALTER TABLE fresh ALTER COLUMN id SET NOT NULL;
+ALTER TABLE fresh ADD COLUMN n int NOT NULL;

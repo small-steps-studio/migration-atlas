@@ -1,0 +1,22 @@
+-- migration 3
+ALTER TABLE users ALTER COLUMN status TYPE bigint;
+
+DROP TABLE IF EXISTS public.invoices;
+
+ALTER TABLE users ADD COLUMN ref_code text;
+
+ALTER TABLE public.invoices ADD CONSTRAINT uq_18 UNIQUE USING INDEX idx_21;
+
+ALTER TABLE users DROP COLUMN IF EXISTS note;
+
+ALTER TABLE products ADD COLUMN email integer NOT NULL;
+
+ALTER TABLE users DROP COLUMN IF EXISTS email;
+
+ALTER TABLE "Accounts" ALTER COLUMN email SET NOT NULL;
+
+DELETE FROM public.invoices;
+
+ALTER TABLE sessions ADD COLUMN note integer NOT NULL;
+
+ALTER TABLE orders ADD CONSTRAINT uq_46 UNIQUE USING INDEX idx_53;

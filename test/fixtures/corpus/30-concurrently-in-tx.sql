@@ -1,0 +1,5 @@
+BEGIN;
+CREATE INDEX CONCURRENTLY idx_x ON orders (status);
+DROP INDEX CONCURRENTLY idx_y;
+COMMIT;
+CREATE INDEX CONCURRENTLY idx_z ON orders (total_cents);
